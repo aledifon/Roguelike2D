@@ -128,6 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 470060383}
+  - component: {fileID: 470060384}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -150,6 +151,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &470060384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470060382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d3d23ef300d8214ca5839ca1213bc19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  columns: 8
+  rows: 8
+  wallCount:
+    minimum: 5
+    maximum: 9
+  foodCount:
+    minimum: 1
+    maximum: 5
+  exit: {fileID: 0}
+  floorTiles: []
+  wallTiles: []
+  outerWallTiles:
+  - {fileID: 3841513383955434780, guid: 6fbccea998d7ed741b75f6d656bc2792, type: 3}
+  - {fileID: 6003573173996469515, guid: cb89ab2d238e6714c9bbec8c0e8343ec, type: 3}
+  - {fileID: 7950340616454539487, guid: 135814aa6fd43904784b7bc3f80e3ae2, type: 3}
+  enemiesTiles: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
