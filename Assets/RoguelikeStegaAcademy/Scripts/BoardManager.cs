@@ -42,7 +42,8 @@ public class BoardManager : MonoBehaviour
     // List to save all the grid positions  
     private List<Vector3> gridPositions = new List<Vector3>();
 
-
+    // Reset the GridPosition List and fill it with all the pos. of the 6x6 Inner Grid
+    // (The items only can be placed on this Inner Grid)
     private void InitialiseList()
     {
         // Clean the grid list to avoid problems
@@ -57,9 +58,8 @@ public class BoardManager : MonoBehaviour
         }
 
     }
-
-    // We'll organise better the scene
-    // Board creation
+    
+    // 10x10 Game Board creation (8x8 Grid + Outer Walls)
     private void BoardSetup()
     {
         // Create a GO from scratch where we'll store all the board elements
@@ -72,7 +72,7 @@ public class BoardManager : MonoBehaviour
                 // Tiles selection depending on the cell position we are
                 GameObject tilesInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
 
-                if (x == 1 || x == columns || y == -1 || y == rows)
+                if (x == -1 || x == columns || y == -1 || y == rows)
                 {
                     tilesInstantiate = outerWallTiles[Random.Range(0, outerWallTiles.Length)];
                 }
@@ -86,7 +86,8 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    // This method will place random positions
+    // This method will return random positions from the 6x6 Inner Grid
+    // (Once a position is returned this one is removed from the List)
     private Vector3 RandomPosition()
     {
         // Get a Random position (Vector3) from the grid
@@ -100,7 +101,7 @@ public class BoardManager : MonoBehaviour
         return randomPosition;
     }
 
-    // Items generation on the board
+    // Items generation on the board (only along the 6x6 Inner Grid)
     private void LayoutObjectAtRandom(GameObject[] tileArray, int min, int max)
     {
         // Create a var to set the number of walls, food, soda, etc..
@@ -119,23 +120,24 @@ public class BoardManager : MonoBehaviour
     // This is the main method which will call the other methods
     public void SetupScene(int level)
     {
-        // Generate the outer walls an the floor
+        // Generate the outer walls and the floor along a 10x10 Grid
+        // (10x10 Grid --> 8x8 Game Board + Outer Walls)
         BoardSetup();
 
-        // Reset our positions list
+        // Set all the positions of the 6x6 Inner Grid on a List
         InitialiseList();
 
-        // Generate the Walls
+        // Generate the Inner Walls along the 6x6 Inner Grid
         LayoutObjectAtRandom(wallTiles, wallCount.minimum, wallCount.maximum);
-        // Generate the Food
+        // Generate the Food along the 6x6 Inner Grid
         LayoutObjectAtRandom(foodTiles, foodCount.minimum, foodCount.maximum);
 
-        // Enemy management generation (Applying the napierian logarithm)
+        // Enemy management generation along the 6x6 Inner Grid (Applying the napierian logarithm)
+        // This will allow gradually increase the number of enemies in func. of the level
         int enemyCount = (int)Mathf.Log(level, 2);
-
         LayoutObjectAtRandom(enemiesTiles, enemyCount, enemyCount);
 
-        // Generate the Exit Signal
+        // Generate the Exit Signal on the Game Board
         Instantiate(exit, new Vector3(columns-1, rows-1, 0f), Quaternion.identity);
     }
 }
