@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4312282429563978297}
   - component: {fileID: 8570586345635632500}
   - component: {fileID: 2431117078221184542}
+  - component: {fileID: -2198395631694286589}
   m_Layer: 3
   m_Name: Wall08
   m_TagString: Untagged
@@ -133,3 +134,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-2198395631694286589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8847220488620539738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95eeb7999eddfc948a2afeb7411e202e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmgSprite: {fileID: 21300110, guid: fbe1e7b94bb1a4a099d5bcb15a00141c, type: 3}
+  hp: 3
