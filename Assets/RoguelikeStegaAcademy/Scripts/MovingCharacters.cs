@@ -9,12 +9,12 @@ public abstract class MovingCharacters : MonoBehaviour
     public float moveTime = 0.1f;
 
     private BoxCollider2D boxCollider;
-    private Rigidbody rb2D;
+    private Rigidbody2D rb2D;
 
     protected virtual void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
-        rb2D = GetComponent<Rigidbody>();
+        rb2D = GetComponent<Rigidbody2D>();
     }
     
     void Update()
@@ -88,7 +88,7 @@ public abstract class MovingCharacters : MonoBehaviour
         // Otherwise we get the component of the GO which the RayCast has hitted
         T hitComponent = hit.transform.GetComponent<T>();
 
-        if(!canMove && hit.transform != null)        
+        if(!canMove && hitComponent != null)        
             OnCantMove(hitComponent);        
     }
 

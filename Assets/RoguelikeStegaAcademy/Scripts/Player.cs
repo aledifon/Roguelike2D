@@ -13,7 +13,16 @@ public class Player : MovingCharacters
     [SerializeField] int pointsPerFood = 10;
     [SerializeField] int pointsPerSoda = 20;
     [SerializeField] int wallDamage = 1;
-    [SerializeField] TextMeshProUGUI foodText;
+
+    [SerializeField] AudioClip moveSound1;
+    [SerializeField] AudioClip moveSound2;
+    [SerializeField] AudioClip eatSound1;
+    [SerializeField] AudioClip eatSound2;
+    [SerializeField] AudioClip drinkSound1;
+    [SerializeField] AudioClip drinkSound2;
+    [SerializeField] AudioClip gameOverSound;
+
+    private TextMeshProUGUI foodText;
 
     private Animator anim;
     private int food;
@@ -22,6 +31,8 @@ public class Player : MovingCharacters
     {
         anim = GetComponent<Animator>();
         food = GameManager.Instance.PlayerFoodPoints;
+        foodText = GameObject.FindGameObjectWithTag("FoodText").
+            GetComponent<TextMeshProUGUI>();
         foodText.text = "Food: " + food;
 
         base.Start();
@@ -29,6 +40,7 @@ public class Player : MovingCharacters
     
     private void OnDisable()
     {
+        Debug.Log($"[OnDisable] Ejecutado en: {gameObject.name}");
         GameManager.Instance.PlayerFoodPoints = food;
     }
 
@@ -65,7 +77,7 @@ public class Player : MovingCharacters
         RaycastHit2D hit;
         if (Move(xDir, yDir, out hit))
         {
-            //Audio
+            SoundManager.Instance.RandomizeFx(moveSound1, moveSound2);
         }
         //
 
@@ -102,6 +114,8 @@ public class Player : MovingCharacters
     {
         if(food <= 0)
         {
+            SoundManager.Instance.PlaySingle(gameOverSound);
+            SoundManager.Instance.StopMusic();
             GameManager.Instance.GameOver();
         }
     }
@@ -117,12 +131,14 @@ public class Player : MovingCharacters
         {
             food += pointsPerFood;
             foodText.text = "+" + pointsPerFood + " Food: " + food;
+            SoundManager.Instance.RandomizeFx(eatSound1, eatSound2);
             collision.gameObject.SetActive(false);
         }
         else if (collision.CompareTag("Soda"))
         {
             food += pointsPerSoda;
             foodText.text = "+" + pointsPerSoda + " Food: " + food;
+            SoundManager.Instance.RandomizeFx(drinkSound1, drinkSound2);
             collision.gameObject.SetActive(false);
         }
     }

@@ -6,6 +6,9 @@ public class Enemy : MovingCharacters
 {
     [SerializeField] int playerDamage;
 
+    [SerializeField] AudioClip attackSound1;
+    [SerializeField] AudioClip attackSound2;
+
     private Animator anim;
     private Transform target;
     private bool skipMove;
@@ -67,5 +70,7 @@ public class Enemy : MovingCharacters
         // will trigger its attack animation
         hitPlayer.LoseFood(playerDamage);
         anim.SetTrigger("EnemyAttack");
+
+        SoundManager.Instance.RandomizeFx(attackSound1, attackSound2);
     }
 }

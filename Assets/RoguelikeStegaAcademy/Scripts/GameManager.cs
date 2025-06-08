@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     private List<Enemy> enemies;
     private bool enemiesMoving;
 
-    private int level = 0;
+    private int level = 1;
     private TextMeshProUGUI levelText;
     private GameObject levelImage;
     private bool doingSetup;
@@ -44,26 +44,27 @@ public class GameManager : MonoBehaviour
         InitGame();
     }
 
-    //private void OnLevelWasLoaded(int level)
-    //{
-    //    level++;
-    //    InitGame();
-    //}
-
-    void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    //Deprecated Unity Method --> Now use SceneManagement Events System
+    private void OnLevelWasLoaded(int index)
     {
         level++;
-        InitGame(); 
+        InitGame();
     }
+
+    //void OnEnable()
+    //{
+    //    SceneManager.sceneLoaded += OnSceneLoaded;
+    //}
+    //void OnDisable()
+    //{
+    //    SceneManager.sceneLoaded -= OnSceneLoaded;
+    //}
+
+    //private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    level++;
+    //    InitGame(); 
+    //}
 
 
     private void Update()

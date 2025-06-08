@@ -7,6 +7,9 @@ public class Wall : MonoBehaviour
     [SerializeField] Sprite dmgSprite;
     [SerializeField] int hp = 3;
 
+    [SerializeField] AudioClip chopSound1;
+    [SerializeField] AudioClip chopSound2;
+
     private SpriteRenderer spriteRenderer;
 
     private void Awake()
@@ -16,6 +19,7 @@ public class Wall : MonoBehaviour
 
     public void DamageWall(int loss)
     {
+        SoundManager.Instance.RandomizeFx(chopSound1, chopSound2);
         spriteRenderer.sprite = dmgSprite;
         hp -= loss;
         if (hp <= 0)
