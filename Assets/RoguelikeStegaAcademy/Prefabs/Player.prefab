@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2468001607871621911}
   - component: {fileID: 3755395498058726116}
   - component: {fileID: 6833574788776328078}
+  - component: {fileID: 5966470121753953556}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -184,3 +185,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5966470121753953556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8938278629094698345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cddef55f6bd26546bc1b92b1fee0a54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  restartLevelDelay: 1
+  pointsPerFood: 10
+  pointsPerSoda: 20
+  wallDamage: 1
+  foodText: {fileID: 0}
