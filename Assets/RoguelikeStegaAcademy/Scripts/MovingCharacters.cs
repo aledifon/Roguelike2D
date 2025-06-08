@@ -6,6 +6,7 @@ public abstract class MovingCharacters : MonoBehaviour
 {
     public float speed;                 // Used to move characters with MoveTowards
     public LayerMask blockingLayer;     // Layer to check during the collision
+    public float moveTime = 0.1f;
 
     private BoxCollider2D boxCollider;
     private Rigidbody rb2D;

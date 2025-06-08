@@ -13,6 +13,8 @@ public class Enemy : MovingCharacters
     // Start is called before the first frame update
     protected override void Start()
     {
+        GameManager.Instance.AddEnemyToList(this);
+
         anim = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         base.Start();
